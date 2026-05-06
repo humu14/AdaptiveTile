@@ -1,0 +1,85 @@
+This is BibTeX, Version 0.99e
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: sample-acmsmall-conf.aux
+Reallocating 'name_of_file' (item size: 1) to 21 items.
+The style file: ACM-Reference-Format.bst
+Reallocating 'name_of_file' (item size: 1) to 6 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Database file #1: paper.bib
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'glb_str_end' (item size: 4) to 20 items.
+Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
+Reallocating 'global_strs' (item size: 1) to 4000000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 9000 items.
+Warning--no journal in Buades2005
+Warning--empty publisher in ChenGuestrin2016
+Warning--empty address in ChenGuestrin2016
+Warning--empty publisher in Howard2019
+Warning--empty address in Howard2019
+Warning--empty publisher in Iandola2016
+Warning--empty address in Iandola2016
+Warning--page numbers missing in both pages and numpages fields in Iandola2016
+Warning--empty publisher in Ke2017
+Warning--empty address in Ke2017
+Warning--empty publisher in Martin2001
+Warning--empty address in Martin2001
+Warning--empty publisher in Murray2013
+Warning--empty address in Murray2013
+Warning--empty publisher in Paszke2019
+Warning--empty address in Paszke2019
+Warning--empty publisher in Ragan-Kelley2013
+Warning--empty address in Ragan-Kelley2013
+Warning--no number and no volume in Ruan2019
+Warning--page numbers missing in both pages and numpages fields in Ruan2019
+Warning--empty publisher in Tan2019
+Warning--empty address in Tan2019
+Warning--empty publisher in Timofte2017
+Warning--empty address in Timofte2017
+Warning--page numbers missing in both pages and numpages fields in Timofte2017
+Warning--no journal in Tomasi1998
+Warning--no number and no volume in Tomasi1998
+You've used 20 entries,
+            6056 wiz_defined-function locations,
+            1607 strings with 21063 characters,
+and the built_in function-call counts, 23992 in all, are:
+= -- 2954
+> -- 772
+< -- 0
++ -- 267
+- -- 285
+* -- 1620
+:= -- 2321
+add.period$ -- 99
+call.type$ -- 20
+change.case$ -- 148
+chr.to.int$ -- 20
+cite$ -- 47
+duplicate$ -- 2182
+empty$ -- 1529
+format.name$ -- 337
+if$ -- 5838
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 82
+newline$ -- 190
+num.names$ -- 140
+pop$ -- 897
+preamble$ -- 1
+purify$ -- 308
+quote$ -- 0
+skip$ -- 807
+stack$ -- 0
+substring$ -- 1846
+swap$ -- 220
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 474
+warning$ -- 27
+while$ -- 152
+width$ -- 0
+write$ -- 406
+(There were 27 warnings)

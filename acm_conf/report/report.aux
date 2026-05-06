@@ -1,0 +1,90 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Project Overview}{2}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Research Objectives}{2}{subsection.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}System Architecture}{2}{subsection.1.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces AdaptiveTile system architecture: tiling $\to $ feature extraction $\to $ complexity prediction $\to $ scheduling $\to $ parallel execution $\to $ merging.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:arch}{{1}{2}{AdaptiveTile system architecture: tiling $\to $ feature extraction $\to $ complexity prediction $\to $ scheduling $\to $ parallel execution $\to $ merging}{figure.caption.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Datasets}{2}{subsection.1.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Dataset summary.}}{2}{table.caption.2}\protected@file@percent }
+\newlabel{tab:datasets}{{1}{2}{Dataset summary}{table.caption.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Exploratory Data Analysis (EDA)}{3}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Tile Profiling Procedure}{3}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Target Variable: Per-Tile Runtime}{3}{subsection.2.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Descriptive statistics of per-tile runtime (ms), 576 raw tiles.}}{3}{table.caption.3}\protected@file@percent }
+\newlabel{tab:runtime_stats}{{2}{3}{Descriptive statistics of per-tile runtime (ms), 576 raw tiles}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Feature Distributions}{3}{subsection.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Summary statistics for all features (576 raw tiles).}}{3}{table.caption.5}\protected@file@percent }
+\newlabel{tab:feat_stats}{{3}{3}{Summary statistics for all features (576 raw tiles)}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Outlier Detection}{3}{subsection.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Per-tile runtime distribution. Right-skewed histogram and Q-Q plot confirming non-normality.}}{4}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:target_dist}{{2}{4}{Per-tile runtime distribution. Right-skewed histogram and Q-Q plot confirming non-normality}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Feature--Runtime Correlation}{4}{subsection.2.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Pearson and Spearman correlation of features with runtime ($p<0.001$).}}{4}{table.caption.8}\protected@file@percent }
+\newlabel{tab:corr}{{4}{4}{Pearson and Spearman correlation of features with runtime ($p<0.001$)}{table.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Feature distributions for 576 raw tiles (3x3 grid).}}{5}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:feat_dist}{{3}{5}{Feature distributions for 576 raw tiles (3x3 grid)}{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Train/Test Distributional Shift}{5}{subsection.2.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Train/test distributional shift (PSI $>0.2$ = significant).}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:drift}{{5}{5}{Train/test distributional shift (PSI $>0.2$ = significant)}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Dimensionality Reduction}{5}{subsection.2.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8}Preprocessing Pipeline Summary}{5}{subsection.2.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Outlier detection across all features. Flagged tiles shown in red.}}{6}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:outliers}{{4}{6}{Outlier detection across all features. Flagged tiles shown in red}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Prototype Implementation}{6}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Module Structure}{6}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Source module overview.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:modules}{{6}{6}{Source module overview}{table.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Pearson, Spearman, and Kendall correlation heatmaps.}}{7}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:corr}{{5}{7}{Pearson, Spearman, and Kendall correlation heatmaps}{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Configuration}{7}{subsection.3.2}\protected@file@percent }
+\newlabel{lst:config}{{1}{7}{Central configuration (\texttt {src/config.py})}{lstlisting.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Central configuration (\texttt  {src/config.py}).}}{7}{lstlisting.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Train vs.\ test feature distributions (GroupShuffleSplit 80/20).}}{8}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:drift}{{6}{8}{Train vs.\ test feature distributions (GroupShuffleSplit 80/20)}{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Left: PCA (6 components = 95\% variance). Right: t-SNE showing three runtime clusters (fast, medium, slow tiles).}}{8}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:dimred}{{7}{8}{Left: PCA (6 components = 95\% variance). Right: t-SNE showing three runtime clusters (fast, medium, slow tiles)}{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Tiling with Halo Borders}{8}{subsection.3.3}\protected@file@percent }
+\newlabel{lst:tiling}{{2}{8}{Tile extraction with halo borders (\texttt {src/tiling.py})}{lstlisting.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}{\ignorespaces Tile extraction with halo borders (\texttt  {src/tiling.py}).}}{8}{lstlisting.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Feature distributions before and after preprocessing.}}{9}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:preproc}{{8}{9}{Feature distributions before and after preprocessing}{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Feature Extraction}{9}{subsection.3.4}\protected@file@percent }
+\newlabel{lst:features}{{3}{9}{Per-tile feature extraction (\texttt {src/features.py})}{lstlisting.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}{\ignorespaces Per-tile feature extraction (\texttt  {src/features.py}).}}{9}{lstlisting.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Complexity Predictor}{10}{subsection.3.5}\protected@file@percent }
+\newlabel{lst:predictor}{{4}{10}{Tabular model registry (\texttt {src/predictor.py})}{lstlisting.4}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4}{\ignorespaces Tabular model registry (\texttt  {src/predictor.py}).}}{10}{lstlisting.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Scheduler Variants}{11}{subsection.3.6}\protected@file@percent }
+\newlabel{lst:schedulers}{{5}{11}{Four scheduler classes (\texttt {src/scheduler.py})}{lstlisting.5}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5}{\ignorespaces Four scheduler classes (\texttt  {src/scheduler.py}).}}{11}{lstlisting.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}CPU Processing Pipelines}{12}{subsection.3.7}\protected@file@percent }
+\newlabel{lst:pipelines}{{6}{12}{CPU pipelines A and B (\texttt {src/worker\_cpu.py})}{lstlisting.6}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {6}{\ignorespaces CPU pipelines A and B (\texttt  {src/worker\_cpu.py}).}}{12}{lstlisting.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Predictor Evaluation (Prototype Results)}{12}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Model Comparison}{13}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Predictor MAE and Spearman $\rho $ (5-fold CV, GroupShuffleSplit). Best in \textbf  {bold}.}}{13}{table.caption.15}\protected@file@percent }
+\newlabel{tab:predictors}{{7}{13}{Predictor MAE and Spearman $\rho $ (5-fold CV, GroupShuffleSplit). Best in \textbf {bold}}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Scheduling \& Parallelism Prototype}{13}{section.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Scheduler comparison at $W=6$ workers (Pipeline B, 8 Kodak images). Dynamic achieves highest mean speedup ($4.76\times $).}}{13}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:schedulers}{{12}{13}{Scheduler comparison at $W=6$ workers (Pipeline B, 8 Kodak images). Dynamic achieves highest mean speedup ($4.76\times $)}{figure.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Scheduler summary ($W=6$, Pipeline B).}}{13}{table.caption.20}\protected@file@percent }
+\newlabel{tab:sched}{{8}{13}{Scheduler summary ($W=6$, Pipeline B)}{table.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Random Forest feature importances (mean decrease in impurity). Edge density and histogram entropy are the strongest predictors.}}{14}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:feat_imp}{{9}{14}{Random Forest feature importances (mean decrease in impurity). Edge density and histogram entropy are the strongest predictors}{figure.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Gantt chart: 6-worker dynamic scheduling on Pipeline B (kodim03). Workers active $>85\%$ of makespan; IR $= 1.47$.}}{14}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:gantt}{{13}{14}{Gantt chart: 6-worker dynamic scheduling on Pipeline B (kodim03). Workers active $>85\%$ of makespan; IR $= 1.47$}{figure.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Predicted vs.\ actual runtime (Random Forest, preprocessed, hold-out fold). Spearman $\rho =0.584$, $R^2=0.254$.}}{15}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:pred_actual}{{10}{15}{Predicted vs.\ actual runtime (Random Forest, preprocessed, hold-out fold). Spearman $\rho =0.584$, $R^2=0.254$}{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Speedup and parallel efficiency vs.\ worker count (Pipeline B, dynamic scheduler). Near-linear scaling to $W=4$ ($3.61\times $, $E=0.90$). At $W=8$, efficiency drops to 0.64.}}{15}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:scalability}{{11}{15}{Speedup and parallel efficiency vs.\ worker count (Pipeline B, dynamic scheduler). Near-linear scaling to $W=4$ ($3.61\times $, $E=0.90$). At $W=8$, efficiency drops to 0.64}{figure.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Speedup vs.\ tile size ($W=6$). $s=128$\,px (24 tiles) gives $4.18\times $; $s=1024$\,px (1 tile) gives $1.0\times $.}}{15}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:tilesize}{{14}{15}{Speedup vs.\ tile size ($W=6$). $s=128$\,px (24 tiles) gives $4.18\times $; $s=1024$\,px (1 tile) gives $1.0\times $}{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations and Future Directions}{16}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Current Limitations}{16}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Future Work}{16}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Conclusion}{16}{Item.14}\protected@file@percent }
+\gdef \@abspage@last{17}

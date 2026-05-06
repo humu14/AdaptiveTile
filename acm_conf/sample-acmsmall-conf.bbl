@@ -1,0 +1,256 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{20}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Blumofe and Leiserson(1999)]%
+        {Blumofe1999}
+\bibfield{author}{\bibinfo{person}{Robert~D. Blumofe} {and}
+  \bibinfo{person}{Charles~E. Leiserson}.} \bibinfo{year}{1999}\natexlab{}.
+\newblock \showarticletitle{Scheduling Multithreaded Computations by Work
+  Stealing}.
+\newblock \bibinfo{journal}{\emph{J. ACM}} \bibinfo{volume}{46},
+  \bibinfo{number}{5} (\bibinfo{year}{1999}), \bibinfo{pages}{720--748}.
+\newblock
+
+
+\bibitem[Breiman(2001)]%
+        {Breiman2001}
+\bibfield{author}{\bibinfo{person}{Leo Breiman}.}
+  \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{Random Forests}.
+\newblock \bibinfo{journal}{\emph{Machine Learning}} \bibinfo{volume}{45},
+  \bibinfo{number}{1} (\bibinfo{year}{2001}), \bibinfo{pages}{5--32}.
+\newblock
+
+
+\bibitem[Buades et~al\mbox{.}(2005)]%
+        {Buades2005}
+\bibfield{author}{\bibinfo{person}{Antoni Buades}, \bibinfo{person}{Bartomeu
+  Coll}, {and} \bibinfo{person}{Jean-Michel Morel}.}
+  \bibinfo{year}{2005}\natexlab{}.
+\newblock \showarticletitle{A Non-Local Algorithm for Image Denoising}.
+\newblock   \bibinfo{volume}{2} (\bibinfo{year}{2005}),
+  \bibinfo{pages}{60--65}.
+\newblock
+
+
+\bibitem[Canny(1986)]%
+        {Canny1986}
+\bibfield{author}{\bibinfo{person}{John Canny}.}
+  \bibinfo{year}{1986}\natexlab{}.
+\newblock \showarticletitle{A Computational Approach to Edge Detection}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Pattern Analysis and
+  Machine Intelligence}} \bibinfo{volume}{8}, \bibinfo{number}{6}
+  (\bibinfo{year}{1986}), \bibinfo{pages}{679--698}.
+\newblock
+
+
+\bibitem[Chen and Guestrin(2016)]%
+        {ChenGuestrin2016}
+\bibfield{author}{\bibinfo{person}{Tianqi Chen} {and} \bibinfo{person}{Carlos
+  Guestrin}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{{XGBoost}: A Scalable Tree Boosting System}. In
+  \bibinfo{booktitle}{\emph{KDD}}. \bibinfo{pages}{785--794}.
+\newblock
+
+
+\bibitem[Graham(1969)]%
+        {Graham1969}
+\bibfield{author}{\bibinfo{person}{Ronald~L. Graham}.}
+  \bibinfo{year}{1969}\natexlab{}.
+\newblock \showarticletitle{Bounds on Multiprocessing Timing Anomalies}.
+\newblock \bibinfo{journal}{\emph{SIAM J. Appl. Math.}} \bibinfo{volume}{17},
+  \bibinfo{number}{2} (\bibinfo{year}{1969}), \bibinfo{pages}{416--429}.
+\newblock
+
+
+\bibitem[Howard et~al\mbox{.}(2019)]%
+        {Howard2019}
+\bibfield{author}{\bibinfo{person}{Andrew Howard}, \bibinfo{person}{Mark
+  Sandler}, \bibinfo{person}{Grace Chu}, \bibinfo{person}{Liang-Chieh Chen},
+  \bibinfo{person}{Bo Chen}, \bibinfo{person}{Mingxing Tan},
+  \bibinfo{person}{Weijun Wang}, \bibinfo{person}{Yukun Zhu},
+  \bibinfo{person}{Ruoming Pang}, \bibinfo{person}{Vijay Vasudevan},
+  \bibinfo{person}{Quoc~V. Le}, {and} \bibinfo{person}{Hartwig Adam}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Searching for {MobileNetV3}}. In
+  \bibinfo{booktitle}{\emph{ICCV}}. \bibinfo{pages}{1314--1324}.
+\newblock
+
+
+\bibitem[Iandola et~al\mbox{.}(2016)]%
+        {Iandola2016}
+\bibfield{author}{\bibinfo{person}{Forrest~N. Iandola}, \bibinfo{person}{Song
+  Han}, \bibinfo{person}{Matthew~W. Moskewicz}, \bibinfo{person}{Khalid
+  Ashraf}, \bibinfo{person}{William~J. Dally}, {and} \bibinfo{person}{Kurt
+  Keutzer}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{{SqueezeNet}: {AlexNet}-Level Accuracy with 50x
+  Fewer Parameters and Less Than 0.5{MB} Model Size}. In
+  \bibinfo{booktitle}{\emph{ICLR}}.
+\newblock
+
+
+\bibitem[Ke et~al\mbox{.}(2017)]%
+        {Ke2017}
+\bibfield{author}{\bibinfo{person}{Guolin Ke}, \bibinfo{person}{Qi Meng},
+  \bibinfo{person}{Thomas Finley}, \bibinfo{person}{Taifeng Wang},
+  \bibinfo{person}{Wei Chen}, \bibinfo{person}{Weidong Ma},
+  \bibinfo{person}{Qiwei Ye}, {and} \bibinfo{person}{Tie-Yan Liu}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{{LightGBM}: A Highly Efficient Gradient Boosting
+  Decision Tree}. In \bibinfo{booktitle}{\emph{NeurIPS}}.
+  \bibinfo{pages}{3146--3154}.
+\newblock
+
+
+\bibitem[Kodak(1999)]%
+        {Kodak}
+\bibfield{author}{\bibinfo{person}{Kodak}.} \bibinfo{year}{1999}\natexlab{}.
+\newblock \bibinfo{title}{Kodak Lossless True Color Image Suite}.
+\newblock \bibinfo{howpublished}{\url{http://r0k.us/graphics/kodak/}}.
+\newblock
+
+
+\bibitem[Martin et~al\mbox{.}(2001)]%
+        {Martin2001}
+\bibfield{author}{\bibinfo{person}{David Martin}, \bibinfo{person}{Charless
+  Fowlkes}, \bibinfo{person}{Doron Tal}, {and} \bibinfo{person}{Jitendra
+  Malik}.} \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{A Database of Human Segmented Natural Images and
+  Its Application to Evaluating Segmentation Algorithms and Measuring
+  Ecological Statistics}. In \bibinfo{booktitle}{\emph{ICCV}},
+  Vol.~\bibinfo{volume}{2}. \bibinfo{pages}{416--423}.
+\newblock
+
+
+\bibitem[Murray et~al\mbox{.}(2013)]%
+        {Murray2013}
+\bibfield{author}{\bibinfo{person}{Derek~G. Murray}, \bibinfo{person}{Frank
+  McSherry}, \bibinfo{person}{Rebecca Isaacs}, \bibinfo{person}{Michael Isard},
+  \bibinfo{person}{Paul Barham}, {and} \bibinfo{person}{Mart\'{\i}n Abadi}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Naiad: A Timely Dataflow System}. In
+  \bibinfo{booktitle}{\emph{SOSP}}. \bibinfo{pages}{439--455}.
+\newblock
+
+
+\bibitem[Ojala et~al\mbox{.}(2002)]%
+        {Ojala2002}
+\bibfield{author}{\bibinfo{person}{Timo Ojala}, \bibinfo{person}{Matti
+  Pietik{\"{a}}inen}, {and} \bibinfo{person}{Topi M{\"{a}}enp{\"{a}}{\"{a}}}.}
+  \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{Multiresolution Gray-Scale and Rotation Invariant
+  Texture Classification with Local Binary Patterns}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Pattern Analysis and
+  Machine Intelligence}} \bibinfo{volume}{24}, \bibinfo{number}{7}
+  (\bibinfo{year}{2002}), \bibinfo{pages}{971--987}.
+\newblock
+
+
+\bibitem[Paszke et~al\mbox{.}(2019)]%
+        {Paszke2019}
+\bibfield{author}{\bibinfo{person}{Adam Paszke} {et~al\mbox{.}}}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{{PyTorch}: An Imperative Style, High-Performance
+  Deep Learning Library}.
+\newblock In \bibinfo{booktitle}{\emph{NeurIPS}}. \bibinfo{pages}{8024--8035}.
+\newblock
+
+
+\bibitem[Pedregosa et~al\mbox{.}(2011)]%
+        {Pedregosa2011}
+\bibfield{author}{\bibinfo{person}{Fabian Pedregosa} {et~al\mbox{.}}}
+  \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{Scikit-learn: Machine Learning in {Python}}.
+\newblock \bibinfo{journal}{\emph{Journal of Machine Learning Research}}
+  \bibinfo{volume}{12} (\bibinfo{year}{2011}), \bibinfo{pages}{2825--2830}.
+\newblock
+
+
+\bibitem[Ragan-Kelley et~al\mbox{.}(2013)]%
+        {Ragan-Kelley2013}
+\bibfield{author}{\bibinfo{person}{Jonathan Ragan-Kelley},
+  \bibinfo{person}{Connelly Barnes}, \bibinfo{person}{Andrew Adams},
+  \bibinfo{person}{Sylvain Paris}, \bibinfo{person}{Fr{\'{e}}do Durand}, {and}
+  \bibinfo{person}{Saman Amarasinghe}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Halide: A Language and Compiler for Optimizing
+  Parallelism, Locality, and Recomputation in Image Processing Pipelines}. In
+  \bibinfo{booktitle}{\emph{PLDI}}. \bibinfo{pages}{519--530}.
+\newblock
+
+
+\bibitem[Ruan et~al\mbox{.}(2019)]%
+        {Ruan2019}
+\bibfield{author}{\bibinfo{person}{Hang Ruan} {et~al\mbox{.}}}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{{GPU}-Accelerated Image Processing: A Survey}.
+\newblock \bibinfo{journal}{\emph{Journal of Real-Time Image Processing}}
+  (\bibinfo{year}{2019}).
+\newblock
+
+
+\bibitem[Tan and Le(2019)]%
+        {Tan2019}
+\bibfield{author}{\bibinfo{person}{Mingxing Tan} {and} \bibinfo{person}{Quoc~V.
+  Le}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{{EfficientNet}: Rethinking Model Scaling for
+  Convolutional Neural Networks}. In \bibinfo{booktitle}{\emph{ICML}}.
+  \bibinfo{pages}{6105--6114}.
+\newblock
+
+
+\bibitem[Timofte et~al\mbox{.}(2017)]%
+        {Timofte2017}
+\bibfield{author}{\bibinfo{person}{Radu Timofte}, \bibinfo{person}{Eirikur
+  Agustsson}, \bibinfo{person}{Luc~Van Gool}, \bibinfo{person}{Ming-Hsuan
+  Yang}, {and} \bibinfo{person}{Lei Zhang}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{{NTIRE} 2017 Challenge on Single Image
+  Super-Resolution: Methods and Results}. In \bibinfo{booktitle}{\emph{CVPR
+  Workshops}}.
+\newblock
+
+
+\bibitem[Tomasi and Manduchi(1998)]%
+        {Tomasi1998}
+\bibfield{author}{\bibinfo{person}{Carlo Tomasi} {and} \bibinfo{person}{Roberto
+  Manduchi}.} \bibinfo{year}{1998}\natexlab{}.
+\newblock \showarticletitle{Bilateral Filtering for Gray and Color Images}.
+\newblock  (\bibinfo{year}{1998}), \bibinfo{pages}{839--846}.
+\newblock
+
+
+\end{thebibliography}
