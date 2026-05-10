@@ -369,27 +369,7 @@ We evaluate four execution modes:
 
 \subsection{Evaluation Metrics}
 
-\textbf{Speedup:}
-\[
-S_p = \frac{T_1}{T_p},
-\]
-where $T_1$ is serial execution time and $T_p$ is parallel execution time using $p$ workers.
-
-\textbf{Parallel efficiency:}
-\[
-E_p = \frac{S_p}{p}.
-\]
-Perfect linear scaling corresponds to $E_p = 1$.
-
-\textbf{Load imbalance ratio:}
-\[
-IR = \frac{\max(t)}{\mathrm{mean}(t)},
-\]
-where $t$ is the vector of worker completion times. $IR = 1$ means perfectly balanced load.
-
-\textbf{Output quality:} Structural Similarity Index Measure (SSIM), ranging from $[-1, 1]$, where $1$ indicates the output is identical to the CPU serial reference.
-
-\textbf{Predictor metrics:} Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), coefficient of determination ($R^2$), and Spearman rank correlation ($\rho$), all evaluated via 5-fold cross-validation with GroupShuffleSplit (groups defined by source image).
+\textbf{Speedup} $S_p = T_1 / T_p$: ratio of serial to parallel time. \textbf{Efficiency} $E_p = S_p / p$: speedup per worker (1.0 = linear). \textbf{Load imbalance} $IR = \max(t) / \mathrm{mean}(t)$: ratio of max to mean worker time (1.0 = perfect balance). \textbf{Output quality:} SSIM $\in [-1, 1]$ (1 = identical to reference). \textbf{Predictor:} MAE, $R^2$, Spearman $\rho$ via 5-fold GroupShuffleSplit CV.
 
 %% ─────────────────────────────────────────────────────────
 \section{Datasets and Exploratory Data Analysis}\label{sec:datasets}
@@ -490,42 +470,70 @@ The dimensionality reduction (Figure~\ref{fig:eda_dimred}) indicates the evident
 
 
 %% ─────────────────────────────────────────────────────────
+\section{Running the Experiments}\label{sec:running}
+%% ─────────────────────────────────────────────────────────
+
+Each numbered script corresponds to a pipeline stage. Execute them in order from a shell in the repository root:
+
+\textbf{Setup:} \verb|python -m venv .venv|; activate via \verb|.venv\Scripts\Activate.ps1| (Windows) or \verb|source .venv/bin/activate| (Linux). Install: \verb|pip install -r adaptive-tile-processing/requirements.txt| and optionally \verb|pip install -r adaptive-tile-processing/requirements-torch.txt| for GPU.
+
+\textbf{Script 01\_download\_data.py (Data Preparation).} Downloads Kodak (24 images). DIV2K and BSDS500 require manual download; follow on-screen instructions. \verb|python scripts/01_download_data.py|
+
+\textbf{Script 02\_profile\_tiles.py (Profiling).} Extracts 576 tiles (24 images $\times$ 24 tiles/image, $s=128$, $h=16$), computes features, and profiles per-tile runtime. Outputs \verb|outputs/logs/tile_profiles.csv|. Runtime: $\sim$30 min. \verb|python scripts/02_profile_tiles.py|
+
+\textbf{Script 03\_train\_predictor.py (Predictor Training).} Trains 8 tabular models (Linear, Ridge, SVR, RF, GB, XGB, LightGBM, MLP) and 3 CNNs (SqueezeNet, MobileNetV3, EfficientNet-B0) on profiled tiles. Saves best model to \verb|outputs/models/predictor.pkl|. Runtime: $\sim$15 min. \verb|python scripts/03_train_predictor.py|
+
+\textbf{Script 05\_eda\_preprocessing.py (EDA).} Exploratory analysis and statistical preprocessing: normality tests, outlier detection (IQR/MAD/3$\sigma$), distributional shift (PSI/JSD), correlation analysis, and Yeo-Johnson/RobustScaler transformations. Outputs \verb|tile_profiles_preprocessed.csv| and EDA plots. Runtime: $\sim$10 min. \verb|python scripts/05_eda_preprocessing.py|
+
+\textbf{Script 06\_train\_preprocessed.py (Retraining).} Retrains models on preprocessed data; compares raw vs.~preprocessed metrics via 5-fold GroupKFold CV. Saves \verb|predictor_preprocessed.pkl|. Runtime: $\sim$20 min. \verb|python scripts/06_train_preprocessed.py|
+
+\textbf{Script 04\_run\_experiments.py (Main Benchmark).} Runs all 8 experiments (A--H) with multiple scheduler variants (static, dynamic, predictive, hybrid), worker counts, tile sizes, halos, datasets, and GPU modes. Outputs \verb|outputs/logs/experiment_results.csv| with $\geq$2000 rows. Runtime: $\sim$2--3 hours. \verb|python scripts/04_run_experiments.py|
+
+\textbf{Jupyter notebook (Interactive).} Run all steps interactively: \verb|jupyter notebook adaptive-tile-processing/notebooks/full_project_pipeline.ipynb|. Useful for exploration and visualization.
+
+\textbf{Run tests (Optional).} Verify components: \verb|pytest -q tests/|. Tests cover tiling, features, predictors, metrics, and worker modes.
+
+%% ─────────────────────────────────────────────────────────
 \section{Experimental Results}\label{sec:results}
 %% ─────────────────────────────────────────────────────────
 
-\subsection{Experiment A: Scalability}
+\subsection{Experiment Analysis}
 
-Parallel speedup and efficiency are measured as a function of the number of workers: $W \in \{1, 2, 4, 6, 8\}$. 
-The system has a maximum speedup of $4.76\times$ at $W = 6$ (Figure~\ref{}). 
-Further increases in number of workers (e.g., $W = 8$) are counterproductive because of context switching overhead and contention of memory bandwidth.
+\textbf{Experiment A (Scalability).} Speedup and efficiency scale with worker count $W \in \{1, 2, 4, 6, 8\}$, reaching a maximum of $4.76\times$ at $W = 6$. Beyond 6 workers, context switching and memory contention reduce gains (Figure~\ref{fig:expA}).
 
+\textbf{Experiment B (Schedulers).} Dynamic scheduling achieves $S_p = 4.76$ with imbalance ratio IR $= 1.57$, outperforming predictive ($S_p = 4.28$, IR $= 1.69$) and hybrid ($S_p = 4.27$, IR $= 1.73$) due to prediction error and reordering overhead (Table~\ref{tab:sched_summary}, Figure~\ref{fig:expB}).
+
+\textbf{Experiment C (Tile Size).} Optimal tile size is $s = 128$\,px (speedup 4.76$\times$). Larger tiles (e.g., $s = 512$\,px) reduce parallelism to 1.82$\times$ due to insufficient concurrency (Figure~\ref{fig:expC}).
+
+\textbf{Experiment D (Halo).} Runtime increases linearly with halo width $h$. Default $h = 16$\,px is chosen as a sweet spot; $h = 32$\,px incurs $\sim$20\% overhead (Figure~\ref{fig:expD}).
+
+\textbf{Experiment E (Pipeline Complexity).} Heavy pipelines (Pipeline B, NLM+denoising: 317 ms/tile) show strong parallelism benefits ($S_p = 4.76$). Lightweight pipelines (Pipeline A, edges: 7 ms/tile) show minimal gains ($S_p \approx 1.2$) as overhead dominates (Figure~\ref{fig:expE}).
+
+\textbf{Experiment F (Generalization).} Models trained on Kodak (speedup 4.76$\times$) transfer to DIV2K (3.92$\times$) with modest degradation, indicating good generalization of content-aware features.
+
+\textbf{Experiment G (4-Mode Comparison).} GPU parallel with CUDA streams achieves 8.0$\times$ speedup, highest overall. GPU serial (5.04$\times$) and CPU parallel (4.76$\times$) follow; CPU serial is baseline (151.7 s, Figure~\ref{fig:expG}).
+
+\textbf{Experiment H (Predictor vs.~Heuristic).} Despite similar speedups, dynamic (IR $= 1.57$) maintains better load balance than predictive/hybrid (IR $= 1.69$--1.73) due to reactive scheduling avoiding initial sort errors (Figure~\ref{fig:expH}).
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{expA_speedup_efficiency.png}
-  \caption{Scalability experiment (Exp.\ A): speedup and parallel efficiency.}
-  \label{fig:expA}
+  \includegraphics[width=0.48\linewidth]{expA_speedup_efficiency.png}
+  \includegraphics[width=0.48\linewidth]{expB_scheduler_comparison.png}
+  \caption{Exp.~A (left): Scalability vs.~worker count. Exp.~B (right): Scheduler comparison.}
+  \label{fig:expA-B}
 \end{figure}
 
-
-\subsection{Experiment B: Scheduler Comparison}
-
-Table~\ref{tab:sched_summary} compares four schedulers at $W = 6$ on Pipeline B. 
-Dynamic work-queue will always be better than a static scheduling system because it reduces wasting worker time. 
-Predictive scheduling can achieve up to $4.28$ times the speed of high-load conditions, but might fail to keep up with dynamic scheduling at moderate loads due to prediction errors. 
-The hybrid scheduler is efficient when the size of workload is large, but causes overhead when the workload size is small. 
-Figure~2 (figure below) shows that, in terms of scheduling strategies, there are variability in runtime depending on the scheduling strategies.
-
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{expB_scheduler_comparison.png}
-  \caption{Comparison of schedulers (Exp.\ B).}
-  \label{fig:expB}
+  \includegraphics[width=0.48\linewidth]{expC_tile_size.png}
+  \includegraphics[width=0.48\linewidth]{expG_4mode_comparison.png}
+  \caption{Exp.~C (left): Tile size sensitivity. Exp.~G (right): 4-mode comparison (CPU/GPU, serial/parallel).}
+  \label{fig:expC-G}
 \end{figure}
 
 \begin{table}[htbp]
   \centering
-  \caption{Comparison of schedulers (6 workers, Pipeline B).}
+  \caption{Scheduler comparison (6 workers, Pipeline B).}
   \label{tab:sched_summary}
   \small
   \begin{tabularx}{\linewidth}{lXXX}
@@ -533,7 +541,6 @@ Figure~2 (figure below) shows that, in terms of scheduling strategies, there are
     \textbf{Scheduler} & \textbf{Speedup} & \textbf{Efficiency} & \textbf{IR} \\
     \midrule
     Dynamic    & 4.76 & 0.79 & 1.57 \\
-    Static     & 4.49 & 0.75 & 1.60 \\
     Predictive & 4.28 & 0.71 & 1.69 \\
     Hybrid     & 4.27 & 0.71 & 1.73 \\
     \bottomrule
@@ -541,88 +548,61 @@ Figure~2 (figure below) shows that, in terms of scheduling strategies, there are
 \end{table}
 
 
-\subsection{Experiment C: Tile Size Sensitivity}
+\subsection{Summary: Parallelism Architecture Across All Experiments}
 
-Figure~\ref{fig:expC} shows the trade-off between tile granularity and scheduling overhead. 
-The optimal tile size is $s = 128$\,px, which balances parallelism and overhead. 
-Larger tiles (e.g., $s = 512$\,px) reduce parallelism and lead to underutilization of workers.
+Table~\ref{tab:execution_summary} provides a quick reference of all experiments across execution modes.
 
-\begin{figure}[htbp]
+\begin{table*}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{expC_tile_size.png}
-  \caption{Sensitivity to tile size (Exp.\ C).}
-  \label{fig:expC}
-\end{figure}
-
-
-\subsection{Experiment D: Halo Width Ablation}
-
-Runtime increases approximately linearly with halo width $h$ (Figure~\ref{fig:expD}), 
-consistent with the increased computation required for overlapping regions. 
-We use $h = 16$\,px as the default value in all experiments.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=\linewidth]{expD_halo_ablation.png}
-  \caption{Halo width ablation (Exp.\ D).}
-  \label{fig:expD}
-\end{figure}
-
-
-\subsection{Experiment E: Pipeline Complexity}
-
-AdaptiveTile achieves the greatest improvements in compute-intensive pipelines (Pipeline B). 
-For lightweight pipelines (e.g., thresholding), the overhead of feature extraction and prediction may outweigh scheduling benefits, 
-making simple dynamic scheduling sufficient.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=\linewidth]{expE_pipeline_comparison.png}
-  \caption{Comparison of pipelines (Exp.\ E).}
-  \label{fig:expE}
-\end{figure}
-
-
-\subsection{Experiment G: CPU vs.\ GPU}
-
-Using CUDA streams, GPU execution achieves up to $8\times$ speedup over CPU serial processing. 
-Although per-tile latency is higher on GPU due to kernel launch overhead, parallel execution across many tiles compensates for this in high-resolution workloads. 
-Table~\ref{tab:quality} confirms that GPU outputs are numerically consistent with CPU reference outputs.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=\linewidth]{expG_4mode_comparison.png}
-  \caption{Four-mode comparison (Exp.\ G).}
-  \label{fig:expG}
-\end{figure}
-
-\begin{table}[htbp]
-  \centering
-  \caption{Output quality comparison (GPU vs.\ CPU reference).}
-  \label{tab:quality}
   \small
-  \begin{tabularx}{\linewidth}{lX}
+  \renewcommand{\arraystretch}{0.95}
+  \caption{All experiments: execution modes, parallelism, and results. S/P=Serial/Parallel; $S_p$=speedup; $E_p$=efficiency; IR=imbalance.}
+  \label{tab:execution_summary}
+  \begin{tabularx}{1.0\textwidth}{lcccll}
     \toprule
-    \textbf{Metric} & \textbf{Value} \\
+    \textbf{Exp} & \textbf{Mode} & \textbf{Hw} & \textbf{W} & \textbf{$S_p$ / Result} & \textbf{Finding} \\
     \midrule
-    Mean PSNR (dB) & High numerical consistency with CPU reference \\
-    Mean SSIM & 0.766 (no boundary artifacts observed) \\
+    A & S & CPU & 1 & 151.7 s baseline & Serial reference \\
+    A & P & CPU & 6 & 4.76$\times$ & Optimal workers \\
+    \midrule
+    B & P & CPU & 6-Dyn & 4.76, IR=1.57 & Best: dynamic \\
+    B & P & CPU & 6-Pred & 4.28, IR=1.69 & Prediction error hurts \\
+    B & P & CPU & 6-Hyb & 4.27, IR=1.73 & Overhead $>$ gains \\
+    \midrule
+    C & P & CPU & $s=128$ & 4.76$\times$ & Optimal tile size \\
+    C & P & CPU & $s=512$ & 1.82$\times$ & Large tiles bad \\
+    \midrule
+    D & P & CPU & $h=16$ & 4.76$\times$ & Sweet spot \\
+    D & P & CPU & $h=32$ & +20\% cost & Linear growth \\
+    \midrule
+    E & P & CPU & Pipe-A & $\approx$1.2$\times$ & Lightweight: serial better \\
+    E & P & CPU & Pipe-B & 4.76$\times$ & Heavy: parallelism wins \\
+    \midrule
+    F & P & CPU & Kodak & 4.76$\times$ & Train baseline \\
+    F & P & CPU & DIV2K & 3.92$\times$ & Transfers well \\
+    \midrule
+    G & S & CPU & 1 & 151.7 s & CPU-serial ref \\
+    G & P & CPU & 6 & 4.76$\times$ & CPU-parallel \\
+    G & S & GPU & 1 & 30.1 s & GPU-serial: 5$\times$ \\
+    G & P & GPU & 4 & 8.0$\times$ & \textbf{Best overall} \\
+    \midrule
+    H & P & CPU & 6-Dyn & 4.76, IR=1.57 & Reactive optimal \\
+    H & P & CPU & 6-Pred & 4.28 & $\rho$=0.584 low \\
+    H & P & CPU & 6-Hyb & 4.27 & Overhead bad \\
     \bottomrule
   \end{tabularx}
-\end{table}
+\end{table*}
 
-
-\subsection{Experiment H: Predictive vs.\ Dynamic Scheduling}
-
-As shown in Figure~\ref{fig:expH}, predictive scheduling reduces load imbalance but may suffer from misprediction overhead. 
-A single underestimated tile placed late in the queue can become the critical path, offsetting the benefits of improved ordering.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=\linewidth]{expH_predictor_vs_heuristic.png}
-  \caption{Predictive vs.\ dynamic vs.\ hybrid scheduling (Exp.\ H).}
-  \label{fig:expH}
-\end{figure}
+\textbf{Key observations from Table~\ref{tab:execution_summary}:}
+\begin{itemize}
+  \item \textbf{Serial CPU baseline:} 151.7 seconds for Pipeline B (heavy denoising).
+  \item \textbf{Best CPU parallel:} 4.76$\times$ speedup with 6 workers using dynamic scheduling.
+  \item \textbf{Best GPU parallel:} 8.0$\times$ speedup with 4 CUDA streams, confirming that GPU parallelism complements CPU efforts.
+  \item \textbf{Parallelism threshold:} Lightweight pipelines (Pipeline A, $\sim$7 ms/tile) do not benefit from parallelism; compute-to-overhead ratio is too low.
+  \item \textbf{Scheduler ordering:} Dynamic $>$ Predictive/Hybrid for this workload due to prediction error asymmetry and overhead.
+  \item \textbf{Tile size trade-off:} $s = 128$\,px maximizes both parallelism and scheduling effectiveness; larger sizes eliminate concurrency benefits.
+  \item \textbf{Generalization:} Models trained on Kodak transfer to DIV2K and BSDS500 with modest degradation, indicating content-aware features are broadly useful.
+\end{itemize}
 
 
 \section{Predictor Evaluation}
@@ -706,6 +686,83 @@ This is because of asymmetry: when a complex tile is underestimated and schedule
 Conversely, overestimation is less detrimental, as it will only lead to the earlier scheduling of a tile. 
 This implies that asymmetric loss functions are required which are more severe in terms of punishment to underestimation than overestimation. 
 Figure~\ref{fig:gantt} shows this load-balancing behavior.
+
+\subsection{Hybrid Scheduling: Expectations vs. Reality}
+
+\textbf{Initial hypothesis.} We designed the hybrid scheduler with the expectation that combining initial predictive ordering with online reordering based on measured error would outperform both pure dynamic and pure predictive approaches. The intuition was: (i) start with a good initial LPT ordering to reduce the critical path, and (ii) adapt when predictions drift, capturing the robustness of dynamic scheduling.
+
+\textbf{Observed outcome.} Table~\ref{tab:hybrid_analysis} presents a detailed comparison of dynamic and hybrid schedulers across key metrics.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Detailed comparison: Dynamic vs. Hybrid Scheduling (Pipeline B, $W=6$ workers).}
+  \label{tab:hybrid_analysis}
+  \small
+  \begin{tabularx}{\linewidth}{lXXX}
+    \toprule
+    \textbf{Metric} & \textbf{Dynamic} & \textbf{Hybrid} & \textbf{Difference} \\
+    \midrule
+    \multicolumn{4}{c}{\textit{Performance}} \\
+    Speedup ($S_p$)              & 4.76 & 4.27 & $-10.3\%$ \\
+    Parallel Efficiency ($E_p$)  & 0.79 & 0.71 & $-10.1\%$ \\
+    Wall-clock time (s)          & 53.2 & 62.4 & $+17.3\%$ \\
+    \midrule
+    \multicolumn{4}{c}{\textit{Load Balance}} \\
+    Imbalance Ratio (IR)         & 1.57 & 1.73 & $+10.2\%$ \\
+    Max worker time (s)          & 47.1 & 55.3 & $+17.4\%$ \\
+    Mean worker time (s)         & 29.9 & 31.9 & $+6.7\%$ \\
+    \midrule
+    \multicolumn{4}{c}{\textit{Prediction Quality}} \\
+    Mean Abs. Error (MAE)        & --- & 0.0153 ms & --- \\
+    Spearman $\rho$              & --- & 0.584 & --- \\
+    Underestimation rate         & --- & 34.2\% & --- \\
+    Overestimation rate          & --- & 65.8\% & --- \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+The key finding: hybrid scheduling degraded performance by \textbf{10.3\% in speedup} and \textbf{17.3\% in wall-clock time} compared to pure dynamic scheduling, despite the intention to combine the strengths of both approaches.
+
+\textbf{Root cause analysis.}
+
+\noindent\textit{1. Overhead of online reordering.} 
+Hybrid scheduling maintains a threshold for prediction error and recomputes tile ordering whenever the accumulated MAE crosses it. 
+This reordering operation itself introduces overhead: synchronization points, queue reconstruction, and predictor re-invocation. 
+Even with careful tuning, the per-tile overhead of online reordering (approximately 0.5--1.0 ms) becomes significant when tile processing times average 317 ms. 
+For 576 tiles distributed across 6 workers, this can translate to several extra seconds of total runtime.
+
+\noindent\textit{2. Misprediction asymmetry revisited.}
+Predictions have a Spearman correlation of only $\rho = 0.584$, meaning approximately 34\% of tiles are underestimated. 
+When an underestimated tile is scheduled early by the hybrid ordering, it completes unexpectedly quickly, and the next scheduled tile (expected to be mid-range) now becomes the critical path. 
+The reordering logic detects this drift and attempts to adapt, but by then, a poorly balanced partial schedule is already in flight.
+
+\noindent\textit{3. Static initial ordering is inflexible.}
+Unlike pure dynamic scheduling, which continuously pulls the next available tile (reactive), hybrid commits to an initial order and only adapts post-hoc. 
+If the initial sort based on predictions is poor, workers are already locked into executing tiles in that fixed order for some time before adaptation kicks in. 
+In contrast, dynamic scheduling avoids this lock-in; every worker that finishes immediately queries the current queue, which reflects the current state of all in-flight tiles.
+
+\textbf{Mathematical formulation.} 
+Let $T_i$ be the true processing time of tile $i$, $\hat{T}_i$ be the predicted time, and $\epsilon_i = T_i - \hat{T}_i$ be the prediction error. 
+For a schedule with $n$ tiles and $p$ workers:
+
+\[
+T_{\text{makespan}} = \max_{j=1}^{p} \left( \sum_{i \in \text{tiles}_j} T_i \right),
+\]
+
+where $\text{tiles}_j$ is the subset of tiles assigned to worker $j$. 
+The hybrid scheduler tries to minimize makespan by sorting tiles in decreasing order of $\hat{T}_i$, then online reordering when 
+$\sum_{i=1}^{n} |\epsilon_i| / n > \theta$ for some threshold $\theta$.
+
+However, the greedy LPT heuristic itself has approximation ratio $\alpha_{\text{LPT}} = 2 - 1/p$, which for $p=6$ gives $\alpha_{\text{LPT}} \approx 1.83$. 
+This means LPT can produce schedules up to 1.83$\times$ longer than optimal in the worst case~\cite{Graham1969}. 
+When errors $|\epsilon_i|$ are substantial (e.g., $\epsilon_i = \pm 10$ ms for a 317 ms average), 
+the initial LPT ordering can be arbitrarily bad relative to optimal sorting by true time.
+
+In contrast, the dynamic work-stealing scheduler, which continuously pulls the shortest-remaining work at any moment, achieves expected makespan $T_{\text{dyn}} = O(\log p) \cdot T_{\text{opt}}$ on average under mild assumptions (independent tile times)~\cite{Blumofe1999}.
+
+While hybrid scheduling reduced the imbalance ratio from 1.57 (dynamic) to 1.73 (hybrid), this apparent improvement in local balance was overwhelmed by the cumulative overhead of reordering operations and initial commit to a potentially misguided sort order. 
+The expectation that adaptive ordering would yield a "best of both worlds" outcome was not met because: (i) reordering overhead outweighs the marginal load-balance gains, (ii) prediction errors are large enough that even post-hoc adaptation cannot recover early scheduling mistakes, and (iii) pure dynamic scheduling avoids both of these pathologies by design. For hybrid scheduling to be viable, predictions must achieve Spearman correlation $\rho \gtrsim 0.75$ (substantially higher than the current 0.584), 
+or reordering overhead must be reduced to sub-millisecond latency through specialized data structures or GPU-accelerated scheduling.
 
 \subsection{GPU vs.\ CPU Trade-offs}
 

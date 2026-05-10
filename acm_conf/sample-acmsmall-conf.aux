@@ -44,70 +44,64 @@
 \citation{Graham1969}
 \citation{Tomasi1998}
 \citation{Buades2005}
+\citation{Kodak}
+\citation{Timofte2017}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Scheduler Variants}{5}{subsection.4.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Processing Pipelines}{5}{subsection.4.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Execution Modes}{5}{subsection.4.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Evaluation Metrics}{5}{subsection.4.7}\protected@file@percent }
-\citation{Kodak}
-\citation{Timofte2017}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Datasets and Exploratory Data Analysis}{5}{section.5}\protected@file@percent }
+\newlabel{sec:datasets}{{5}{5}{Datasets and Exploratory Data Analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Datasets}{5}{subsection.5.1}\protected@file@percent }
 \citation{Martin2001}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Datasets and Exploratory Data Analysis}{6}{section.5}\protected@file@percent }
-\newlabel{sec:datasets}{{5}{6}{Datasets and Exploratory Data Analysis}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Datasets}{6}{subsection.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Tile Profiling}{6}{subsection.5.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Exploratory Data Analysis}{6}{subsection.5.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Tile characteristics and desired run time (576 raw tiles).}}{6}{table.caption.4}\protected@file@percent }
 \newlabel{tab:eda_stats}{{2}{6}{Tile characteristics and desired run time (576 raw tiles)}{table.caption.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Pearson-correlation coefficient of features with per-tile runtime: Pearson ($r$) and Spearman ($\rho $) correlation. All significant correlations at $p < 0.001$.}}{7}{table.caption.5}\protected@file@percent }
-\newlabel{tab:eda_corr}{{3}{7}{Pearson-correlation coefficient of features with per-tile runtime: Pearson ($r$) and Spearman ($\rho $) correlation. All significant correlations at $p < 0.001$}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Pearson-correlation coefficient of features with per-tile runtime: Pearson ($r$) and Spearman ($\rho $) correlation. All significant correlations at $p < 0.001$.}}{6}{table.caption.5}\protected@file@percent }
+\newlabel{tab:eda_corr}{{3}{6}{Pearson-correlation coefficient of features with per-tile runtime: Pearson ($r$) and Spearman ($\rho $) correlation. All significant correlations at $p < 0.001$}{table.caption.5}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Train/test distributional shift (80/20 GroupShuffleSplit by image). PSI $> 0.2$ = possible shift; JSD $< 0.1$ = low divergence.}}{7}{table.caption.6}\protected@file@percent }
 \newlabel{tab:psi_jsd}{{4}{7}{Train/test distributional shift (80/20 GroupShuffleSplit by image). PSI $> 0.2$ = possible shift; JSD $< 0.1$ = low divergence}{table.caption.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Dimensionality reduction of tile features. Left: PCA captures 95\% of variance in the first 4 components. Right: t-SNE (n=400) reveals distinct clusters that correlate with processing time.}}{7}{figure.caption.7}\protected@file@percent }
 \newlabel{fig:eda_dimred}{{2}{7}{Dimensionality reduction of tile features. Left: PCA captures 95\% of variance in the first 4 components. Right: t-SNE (n=400) reveals distinct clusters that correlate with processing time}{figure.caption.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Experimental Results}{7}{section.6}\protected@file@percent }
-\newlabel{sec:results}{{6}{7}{Experimental Results}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Experiment A: Scalability}{7}{subsection.6.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Feature distributions before (blue) and after (green) preprocessing. Outlier removal and Yeo-Johnson transformations substantially reduce skewness.}}{8}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:preprocessing}{{3}{8}{Feature distributions before (blue) and after (green) preprocessing. Outlier removal and Yeo-Johnson transformations substantially reduce skewness}{figure.caption.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Scalability experiment (Exp.\ A): speedup and parallel efficiency.}}{8}{figure.caption.9}\protected@file@percent }
-\newlabel{fig:expA}{{4}{8}{Scalability experiment (Exp.\ A): speedup and parallel efficiency}{figure.caption.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Experiment B: Scheduler Comparison}{8}{subsection.6.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Comparison of schedulers (6 workers, Pipeline B).}}{8}{table.caption.11}\protected@file@percent }
-\newlabel{tab:sched_summary}{{5}{8}{Comparison of schedulers (6 workers, Pipeline B)}{table.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparison of schedulers (Exp.\ B).}}{9}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:expB}{{5}{9}{Comparison of schedulers (Exp.\ B)}{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Experiment C: Tile Size Sensitivity}{9}{subsection.6.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Sensitivity to tile size (Exp.\ C).}}{9}{figure.caption.12}\protected@file@percent }
-\newlabel{fig:expC}{{6}{9}{Sensitivity to tile size (Exp.\ C)}{figure.caption.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Experiment D: Halo Width Ablation}{9}{subsection.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Experiment E: Pipeline Complexity}{9}{subsection.6.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Experiment G: CPU vs.\ GPU}{9}{subsection.6.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Halo width ablation (Exp.\ D).}}{10}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:expD}{{7}{10}{Halo width ablation (Exp.\ D)}{figure.caption.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Comparison of pipelines (Exp.\ E).}}{10}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:expE}{{8}{10}{Comparison of pipelines (Exp.\ E)}{figure.caption.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Four-mode comparison (Exp.\ G).}}{10}{figure.caption.15}\protected@file@percent }
-\newlabel{fig:expG}{{9}{10}{Four-mode comparison (Exp.\ G)}{figure.caption.15}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Output quality comparison (GPU vs.\ CPU reference).}}{10}{table.caption.16}\protected@file@percent }
-\newlabel{tab:quality}{{6}{10}{Output quality comparison (GPU vs.\ CPU reference)}{table.caption.16}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Experiment H: Predictive vs.\ Dynamic Scheduling}{11}{subsection.6.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Predictive vs.\ dynamic vs.\ hybrid scheduling (Exp.\ H).}}{11}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:expH}{{10}{11}{Predictive vs.\ dynamic vs.\ hybrid scheduling (Exp.\ H)}{figure.caption.17}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Predictor Evaluation}{11}{section.7}\protected@file@percent }
-\newlabel{sec:predictor}{{7}{11}{Predictor Evaluation}{section.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Comparison of predictors (raw vs.\ preprocessed).}}{11}{table.caption.18}\protected@file@percent }
-\newlabel{tab:predictor}{{7}{11}{Comparison of predictors (raw vs.\ preprocessed)}{table.caption.18}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces 5-fold cross-validation stability.}}{11}{table.caption.21}\protected@file@percent }
-\newlabel{tab:cv_stability}{{8}{11}{5-fold cross-validation stability}{table.caption.21}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion}{11}{section.8}\protected@file@percent }
-\newlabel{sec:discussion}{{8}{11}{Discussion}{section.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Parallel Utility Threshold}{11}{subsection.8.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Feature importance (gradient variance and edge density dominate).}}{12}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:feat_imp}{{11}{12}{Feature importance (gradient variance and edge density dominate)}{figure.caption.19}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Impact of Mispredictions}{12}{subsection.8.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Predicted vs.\ actual tile runtime (Spearman $\rho = 0.584$).}}{13}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:pred_vs_actual}{{12}{13}{Predicted vs.\ actual tile runtime (Spearman $\rho = 0.584$)}{figure.caption.20}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}GPU vs.\ CPU Trade-offs}{13}{subsection.8.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Feature distributions before (blue) and after (green) preprocessing. Outlier removal and Yeo-Johnson transformations substantially reduce skewness.}}{7}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:preprocessing}{{3}{7}{Feature distributions before (blue) and after (green) preprocessing. Outlier removal and Yeo-Johnson transformations substantially reduce skewness}{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Running the Experiments}{7}{section.6}\protected@file@percent }
+\newlabel{sec:running}{{6}{7}{Running the Experiments}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Experimental Results}{8}{section.7}\protected@file@percent }
+\newlabel{sec:results}{{7}{8}{Experimental Results}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Experiment Analysis}{8}{subsection.7.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Exp.\nonbreakingspace A (left): Scalability vs.\nonbreakingspace worker count. Exp.\nonbreakingspace B (right): Scheduler comparison.}}{9}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:expA-B}{{4}{9}{Exp.~A (left): Scalability vs.~worker count. Exp.~B (right): Scheduler comparison}{figure.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Exp.\nonbreakingspace C (left): Tile size sensitivity. Exp.\nonbreakingspace G (right): 4-mode comparison (CPU/GPU, serial/parallel).}}{9}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:expC-G}{{5}{9}{Exp.~C (left): Tile size sensitivity. Exp.~G (right): 4-mode comparison (CPU/GPU, serial/parallel)}{figure.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Scheduler comparison (6 workers, Pipeline B).}}{9}{table.caption.11}\protected@file@percent }
+\newlabel{tab:sched_summary}{{5}{9}{Scheduler comparison (6 workers, Pipeline B)}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Summary: Parallelism Architecture Across All Experiments}{9}{subsection.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces All experiments: execution modes, parallelism, and results. S/P=Serial/Parallel; $S_p$=speedup; $E_p$=efficiency; IR=imbalance.}}{10}{table.caption.12}\protected@file@percent }
+\newlabel{tab:execution_summary}{{6}{10}{All experiments: execution modes, parallelism, and results. S/P=Serial/Parallel; $S_p$=speedup; $E_p$=efficiency; IR=imbalance}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Predictor Evaluation}{10}{section.8}\protected@file@percent }
+\newlabel{sec:predictor}{{8}{10}{Predictor Evaluation}{section.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Comparison of predictors (raw vs.\ preprocessed).}}{10}{table.caption.13}\protected@file@percent }
+\newlabel{tab:predictor}{{7}{10}{Comparison of predictors (raw vs.\ preprocessed)}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion}{10}{section.9}\protected@file@percent }
+\newlabel{sec:discussion}{{9}{10}{Discussion}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Parallel Utility Threshold}{10}{subsection.9.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Feature importance (gradient variance and edge density dominate).}}{11}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:feat_imp}{{6}{11}{Feature importance (gradient variance and edge density dominate)}{figure.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces 5-fold cross-validation stability.}}{11}{table.caption.16}\protected@file@percent }
+\newlabel{tab:cv_stability}{{8}{11}{5-fold cross-validation stability}{table.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Predicted vs.\ actual tile runtime (Spearman $\rho = 0.584$).}}{12}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:pred_vs_actual}{{7}{12}{Predicted vs.\ actual tile runtime (Spearman $\rho = 0.584$)}{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Impact of Mispredictions}{12}{subsection.9.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Gantt chart of worker tile assignments.}}{13}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:gantt}{{8}{13}{Gantt chart of worker tile assignments}{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Hybrid Scheduling: Expectations vs. Reality}{13}{subsection.9.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Detailed comparison: Dynamic vs. Hybrid Scheduling (Pipeline B, $W=6$ workers).}}{13}{table.caption.18}\protected@file@percent }
+\newlabel{tab:hybrid_analysis}{{9}{13}{Detailed comparison: Dynamic vs. Hybrid Scheduling (Pipeline B, $W=6$ workers)}{table.caption.18}{}}
+\citation{Graham1969}
+\citation{Blumofe1999}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}GPU vs.\ CPU Trade-offs}{14}{subsection.9.4}\protected@file@percent }
 \bibstyle{ACM-Reference-Format}
 \bibdata{paper}
 \bibcite{Blumofe1999}{{1}{1999}{{Blumofe and Leiserson}}{{}}}
@@ -118,11 +112,6 @@
 \bibcite{Graham1969}{{6}{1969}{{Graham}}{{}}}
 \bibcite{Howard2019}{{7}{2019}{{Howard et~al\mbox  {.}}}{{}}}
 \bibcite{Iandola2016}{{8}{2016}{{Iandola et~al\mbox  {.}}}{{}}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Gantt chart of worker tile assignments.}}{14}{figure.caption.22}\protected@file@percent }
-\newlabel{fig:gantt}{{13}{14}{Gantt chart of worker tile assignments}{figure.caption.22}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Sufficiency of Features and Drift}{14}{subsection.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion and Future Work}{14}{section.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{References}{14}{section*.24}\protected@file@percent }
 \bibcite{Ke2017}{{9}{2017}{{Ke et~al\mbox  {.}}}{{}}}
 \bibcite{Kodak}{{10}{1999}{{Kodak}}{{}}}
 \bibcite{Martin2001}{{11}{2001}{{Martin et~al\mbox  {.}}}{{}}}
@@ -131,16 +120,19 @@
 \bibcite{Paszke2019}{{14}{2019}{{Paszke et~al\mbox  {.}}}{{}}}
 \bibcite{Pedregosa2011}{{15}{2011}{{Pedregosa et~al\mbox  {.}}}{{}}}
 \bibcite{Ragan-Kelley2013}{{16}{2013}{{Ragan-Kelley et~al\mbox  {.}}}{{}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}Sufficiency of Features and Drift}{15}{subsection.9.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion and Future Work}{15}{section.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{15}{section*.20}\protected@file@percent }
 \bibcite{Ruan2019}{{17}{2019}{{Ruan et~al\mbox  {.}}}{{}}}
 \bibcite{Tan2019}{{18}{2019}{{Tan and Le}}{{}}}
 \bibcite{Timofte2017}{{19}{2017}{{Timofte et~al\mbox  {.}}}{{}}}
 \bibcite{Tomasi1998}{{20}{1998}{{Tomasi and Manduchi}}{{}}}
 \newlabel{tocindent-1}{0pt}
 \newlabel{tocindent0}{0pt}
-\newlabel{tocindent1}{4.65pt}
+\newlabel{tocindent1}{9.29999pt}
 \newlabel{tocindent2}{11.49998pt}
 \newlabel{tocindent3}{20.22pt}
 \newlabel{tocindent4}{0pt}
 \newlabel{tocindent5}{0pt}
-\newlabel{TotPages}{{15}{15}{}{page.15}{}}
-\gdef \@abspage@last{15}
+\newlabel{TotPages}{{16}{16}{}{page.16}{}}
+\gdef \@abspage@last{16}
