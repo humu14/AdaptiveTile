@@ -39,3 +39,6 @@ Thumbs.db
 *.ckpt
 
 .claude/
+
+# Research notes (local only — not for repo)
+RESEARCH_NOTES.md

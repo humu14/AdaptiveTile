@@ -19,8 +19,9 @@ Table of contents
 9. Discussion
 10. Limitations
 11. Future work
-12. Reproducibility (instructions)
-13. Module reference
+12. Notebook workflow
+13. Reproducibility (instructions)
+14. Module reference
 
 ---
 
@@ -166,7 +167,24 @@ Highlights:
 
 ---
 
-## 12. Reproducibility (Instructions)
+## 12. Notebook Workflow
+
+If you want to run the full project in a single executable notebook, use [adaptive-tile-processing/notebooks/full_project_pipeline.ipynb](adaptive-tile-processing/notebooks/full_project_pipeline.ipynb).
+
+The notebook runs the repository’s main pipeline in order:
+
+- Download data
+- Profile tiles
+- Train the predictor
+- Run EDA and preprocessing
+- Retrain on preprocessed data
+- Execute benchmark experiments
+
+It uses the existing script entry points, so the notebook stays aligned with the command-line workflow.
+
+---
+
+## 13. Reproducibility (Instructions)
 
 Follow these exact steps to reproduce experiments and figures.
 
@@ -208,6 +226,12 @@ python scripts/03_train_predictor.py
 python scripts/04_run_experiments.py
 ```
 
+Or run the full pipeline notebook:
+
+```bash
+jupyter notebook adaptive-tile-processing/notebooks/full_project_pipeline.ipynb
+```
+
 Run tests
 
 ```bash
@@ -230,7 +254,7 @@ Expected outputs
 - `outputs/models/` — saved predictors
 - `outputs/experiment_results.csv` — benchmark results
 
-## 13. Module Reference
+## 14. Module Reference
 
 Brief mapping of important modules (see `src/` for implementation):
 
